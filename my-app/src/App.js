@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './App.css';
 
 function App() {
   // Set the background to pitch black when component mounts
@@ -7,12 +8,14 @@ function App() {
   }, []);
 
   return (
-    <div>
-      {/* Your content goes here */}
+    <div className="body">
+     <div className="text">
+        <div>Adrianna</div>
+        <div>Pinzariu</div>
+      </div>
     </div>
   );
 }
 
 export default App;
-
 
