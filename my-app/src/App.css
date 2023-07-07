@@ -1,5 +1,5 @@
 .body {
-  position: relative; /* Add this line */
+  position: relative;
   background-color: #000000;
   color: white;
   font-family: Georgia, serif;
@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 5%; /* adjust as needed */
+  padding-right: 5%;
 }
 
 .text {
@@ -17,4 +17,45 @@
   margin-top: 20vh; 
   right: 40%;
 }
+
+.about {
+  position: absolute;
+  font-size: 0.12em;
+  color: white;
+  margin-top: 23vh; 
+  left: 70%;
+  text-align: left; /* Text aligned to the left */
+}
+
+.body::before,
+.body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px; /* The thickness of the line */
+  background-color: white; /* The color of the line */
+}
+
+.body::before {
+  left: 20%; /* Position the first line at 20% from the left of the page */
+}
+
+.body::after {
+  right: 20%; /* Position the second line at 20% from the right of the page */
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: white;
+}
+
+
+.line:nth-of-type(1) { left: 20%; }
+.line:nth-of-type(2) { left: 40%; }
+.line:nth-of-type(3) { left: 60%; }
+.line:nth-of-type(4) { left: 80%; }
 

@@ -9,13 +9,23 @@ function App() {
 
   return (
     <div className="body">
-     <div className="text">
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+      <div className="line" />
+
+      <div className="text">
         <div>Adrianna</div>
         <div>Pinzariu</div>
+      </div>
+
+      <div className="about">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Vestibulum vehicula dictum ipsum, at viverra nulla molestie sed.</p>
+        <p>Mauris at ligula sit amet nisl cursus bibendum.</p>
       </div>
     </div>
   );
 }
 
 export default App;
-
