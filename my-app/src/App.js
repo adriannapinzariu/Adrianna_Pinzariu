@@ -1,16 +1,21 @@
-import React, { useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
+import React, { useEffect, useState, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useLoader } from '@react-three/fiber';
 import './App.css';
 
-function Model() {
-  const gltf = useLoader(GLTFLoader, '/cesar_-_louvre_museum/scene.gltf');
-  return <primitive object={gltf.scene} />;
+const Model = () => {
+  const gltf = useLoader(GLTFLoader, '/cesar_-_louvre_museum/scene.gltf')
+
+  return (
+    <mesh scale={7} position={[0, -3, 1]} rotation={[0.125, 5.175, 0]}>
+      <primitive object={gltf.scene} />
+    </mesh>
+  );
 }
 
+
 function App() {
-  // Set the background to pitch black when component mounts
   useEffect(() => {
     document.body.style.backgroundColor = '#000000';
   }, []);
