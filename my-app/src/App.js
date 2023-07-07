@@ -20,9 +20,11 @@ function App() {
       </div>
 
       <div className="about">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <p>Vestibulum vehicula dictum ipsum, at viverra nulla molestie sed.</p>
-        <p>Mauris at ligula sit amet nisl cursus bibendum.</p>
+        <p>Hi, I'm Adrianna Pinzariu.
+        I'm a web developer with a passion for creating beautiful and functional websites.
+        With expertise in React.js, CSS and HTML, I strive to make the web a more user-friendly place. Hi, I'm Adrianna Pinzariu.
+        I'm a web developer with a passion for creating beautiful and functional websites.
+       </p>
       </div>
     </div>
   );

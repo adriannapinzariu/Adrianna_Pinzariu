@@ -13,19 +13,23 @@
 }
 
 .text {
-  position: absolute; /* Add this line */
+  position: absolute; 
   margin-top: 20vh; 
   right: 40%;
 }
 
 .about {
   position: absolute;
-  font-size: 0.12em;
+  font-size: 0.15em;
   color: white;
   margin-top: 23vh; 
-  left: 70%;
-  text-align: left; /* Text aligned to the left */
+  width: 15%;
+  left: 62.5%;
+  text-align: left; 
+  font-family: sans-serif;
+  font-weight: 300;
 }
+
 
 .body::before,
 .body::after {
@@ -33,16 +37,16 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 1px; /* The thickness of the line */
-  background-color: white; /* The color of the line */
+  width: 1px; 
+  background-color: white; 
 }
 
 .body::before {
-  left: 20%; /* Position the first line at 20% from the left of the page */
+  left: 20%;
 }
 
 .body::after {
-  right: 20%; /* Position the second line at 20% from the right of the page */
+  right: 20%; 
 }
 
 .line {
