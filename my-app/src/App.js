@@ -17,7 +17,7 @@ const Model = () => {
     roughness: 0.6, 
     metalness: 1,
   });
-
+ 
   // Traverse the model and update the material on each mesh
   gltf.scene.traverse((child) => {
     if (child.isMesh) {
@@ -25,10 +25,8 @@ const Model = () => {
     }
   });
 
-  useFrame(() => (mesh.current.rotation.y += 0.01));
-
   return (
-    <mesh ref={mesh} scale={7} position={[0, -3, 1]} rotation={[0.125, 5.175, 0]}>
+    <mesh ref={mesh} scale={25} position={[0, -10, 1]} rotation={[0.125, 5.175, 0]}>
       <primitive object={gltf.scene} />
     </mesh>
   );
@@ -36,17 +34,17 @@ const Model = () => {
 
 const RingLight = () => {
   const light = useRef();
-  const lightIntensity = 2;
+  const lightIntensity = 1.5;
   const lightDistance = 10;
   const lightDecay = 2;
   const lightColor = '#ffffff';
   
   // Increase the radius and decrease the tube radius
-  const ringRadius = 2; // Adjust this value to change the size of the ring
-  const tubeRadius = 0.05; // Adjust this value to change the thickness of the ring
+  const ringRadius = 9; // Adjust this value to change the size of the ring
+  const tubeRadius = 0.3; // Adjust this value to change the thickness of the ring
 
   const ringLight = (
-    <group>
+    <group position={[0, 0, 1]} rotation={[0, 0, 0]}> {/* Adjusted the position to be behind the model */}
       <pointLight ref={light} distance={lightDistance} intensity={lightIntensity} decay={lightDecay} color={lightColor} />
       <mesh>
         <torusGeometry args={[ringRadius, tubeRadius, 30, 100]} />
@@ -57,6 +55,7 @@ const RingLight = () => {
 
   return ringLight;
 };
+
 
 function App() {
   useEffect(() => {
@@ -74,6 +73,7 @@ function App() {
         <Canvas camera={{ position: [0, 0, 15] }}>
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 10, 10]} angle={0.3} />
+          <pointLight position={[-10, -10, -10]} />
           <OrbitControls enableZoom enablePan enableRotate />
           <RingLight />
           <Model />
