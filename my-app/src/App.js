@@ -1,20 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three-stdlib';
-import { PointLight, TorusGeometry, MeshBasicMaterial, Mesh, MeshStandardMaterial, Color } from 'three';
+import { PointLight, TorusGeometry, MeshBasicMaterial, Mesh, MeshStandardMaterial, Color, SpotLight } from 'three';
+import { OrbitControls } from "@react-three/drei";
 import './App.css';
 
 const Model = () => {
   const gltf = useLoader(GLTFLoader, '/cesar_-_louvre_museum/scene.gltf', (loader) => loader.manager.onError = (url, error) => console.error('Error loading', url, error));
+  const mesh = useRef();
 
-  if (!gltf) return null;
   // Create a dark grey MeshStandardMaterial
   const material = new MeshStandardMaterial({ 
     color: new Color(0x777777), 
-    roughness: 0.5, 
-    metalness: 1 
+    roughness: 0.6, 
+    metalness: 1,
   });
 
   // Traverse the model and update the material on each mesh
@@ -24,12 +25,14 @@ const Model = () => {
     }
   });
 
+  useFrame(() => (mesh.current.rotation.y += 0.01));
+
   return (
-    <mesh scale={7} position={[0, -3, 1]} rotation={[0.125, 5.175, 0]}>
+    <mesh ref={mesh} scale={7} position={[0, -3, 1]} rotation={[0.125, 5.175, 0]}>
       <primitive object={gltf.scene} />
     </mesh>
   );
-}
+};
 
 const RingLight = () => {
   const light = useRef();
@@ -68,9 +71,10 @@ function App() {
       <div className="line" />
 
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
-        <Canvas>
-          <ambientLight intensity={0.9} />
-          <directionalLight intensity={0.5} position={[0, 10, 5]} /> 
+        <Canvas camera={{ position: [0, 0, 15] }}>
+          <ambientLight intensity={0.5} />
+          <spotLight position={[10, 10, 10]} angle={0.3} />
+          <OrbitControls enableZoom enablePan enableRotate />
           <RingLight />
           <Model />
         </Canvas>
