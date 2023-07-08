@@ -38,11 +38,15 @@ const RingLight = () => {
   const lightDecay = 2;
   const lightColor = '#ffffff';
   
+  // Increase the radius and decrease the tube radius
+  const ringRadius = 2; // Adjust this value to change the size of the ring
+  const tubeRadius = 0.05; // Adjust this value to change the thickness of the ring
+
   const ringLight = (
     <group>
       <pointLight ref={light} distance={lightDistance} intensity={lightIntensity} decay={lightDecay} color={lightColor} />
       <mesh>
-        <torusGeometry args={[0.5, 0.1, 30, 100]} />
+        <torusGeometry args={[ringRadius, tubeRadius, 30, 100]} />
         <meshBasicMaterial color={lightColor} />
       </mesh>
     </group>
