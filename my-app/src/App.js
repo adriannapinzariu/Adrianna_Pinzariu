@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three-stdlib';
-import { MeshStandardMaterial, Color } from 'three';
+import { PointLight, TorusGeometry, MeshBasicMaterial, Mesh, MeshStandardMaterial, Color } from 'three';
 import './App.css';
 
 const Model = () => {
@@ -31,6 +31,26 @@ const Model = () => {
   );
 }
 
+const RingLight = () => {
+  const light = useRef();
+  const lightIntensity = 2;
+  const lightDistance = 10;
+  const lightDecay = 2;
+  const lightColor = '#ffffff';
+  
+  const ringLight = (
+    <group>
+      <pointLight ref={light} distance={lightDistance} intensity={lightIntensity} decay={lightDecay} color={lightColor} />
+      <mesh>
+        <torusGeometry args={[0.5, 0.1, 30, 100]} />
+        <meshBasicMaterial color={lightColor} />
+      </mesh>
+    </group>
+  );
+
+  return ringLight;
+};
+
 function App() {
   useEffect(() => {
     document.body.style.backgroundColor = '#000000';
@@ -46,7 +66,8 @@ function App() {
       <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
         <Canvas>
           <ambientLight intensity={0.9} />
-          <directionalLight intensity={.5} position={[0, 10, 5]} /> 
+          <directionalLight intensity={0.5} position={[0, 10, 5]} /> 
+          <RingLight />
           <Model />
         </Canvas>
       </div>
