@@ -2,10 +2,25 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useLoader } from '@react-three/fiber';
+import { MeshStandardMaterial, Color } from 'three';
 import './App.css';
 
 const Model = () => {
   const gltf = useLoader(GLTFLoader, '/cesar_-_louvre_museum/scene.gltf')
+
+  // Create a dark grey MeshStandardMaterial
+  const material = new MeshStandardMaterial({ 
+    color: new Color(0x777777), 
+    roughness: 0.5, 
+    metalness: 1 
+  });
+
+  // Traverse the model and update the material on each mesh
+  gltf.scene.traverse((child) => {
+    if (child.isMesh) {
+      child.material = material;
+    }
+  });
 
   return (
     <mesh scale={7} position={[0, -3, 1]} rotation={[0.125, 5.175, 0]}>
@@ -42,9 +57,10 @@ function App() {
       </div>
 
       <Canvas>
-        <ambientLight intensity={0.5} />
-        <Model />
-      </Canvas>
+  <ambientLight intensity={0.5} />
+  <directionalLight intensity={1} position={[0, 10, 5]} /> 
+  <Model />
+</Canvas>
     </div>
   );
 }
