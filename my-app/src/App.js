@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three-stdlib';
@@ -57,6 +58,7 @@ const RingLight = () => {
 };
 
 
+
 function App() {
   useEffect(() => {
     document.body.style.backgroundColor = '#000000';
@@ -77,6 +79,9 @@ function App() {
           <OrbitControls enableZoom enablePan enableRotate />
           <RingLight />
           <Model />
+          <EffectComposer>
+            <Bloom luminanceThreshold={0.3} luminanceSmoothing={0.9} height={300} />
+          </EffectComposer>
         </Canvas>
       </div>
 
