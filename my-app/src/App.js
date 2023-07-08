@@ -8,7 +8,7 @@ import './App.css';
 
 const Model = () => {
   const mesh = useRef();
-  const obj = useLoader(OBJLoader, '/Venus_de_Milo_SMK_KAS434_1_10pct.obj')
+  const obj = useLoader(OBJLoader, '/Venus_de_Milo_SMK_KAS434_1.obj')
 
   // Create a dark grey MeshStandardMaterial
   const material = new MeshStandardMaterial({ 
